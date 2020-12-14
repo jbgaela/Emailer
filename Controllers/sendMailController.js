@@ -8,15 +8,9 @@ exports.sendEmail = asyncHandler(async (req, res, next) => {
     await sendEmail({
       toEmail: params.toEmail,
       subject: params.subject,
+      cc: params.cc,
       text: params.text,
-      attachments: [
-        {
-          content: attachment,
-          filename: 'attachment.pdf',
-          type: 'application/pdf',
-          disposition: 'attachment',
-        },
-      ],
+      attachment: [params.attachment],
     });
 
     res.status(200).json({ success: true, data: 'Email Successfully Sent!' });
